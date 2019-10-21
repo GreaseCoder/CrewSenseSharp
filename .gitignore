@@ -1,3 +1,6 @@
+# ClientId and secret
+appsettings.secret.json
+
 *.swp
 *.*~
 project.lock.json
