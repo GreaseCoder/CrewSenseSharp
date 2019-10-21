@@ -11,6 +11,9 @@ namespace CrewSenseNet.Authentication
         private readonly ICrewSenseClient client;
         private readonly string clientId;
         private readonly string clientSecret;
+        private DateTime expiration = DateTime.Now;
+
+        public bool IsExpired() => expiration < DateTime.Now;
 
         public TokenManager(ICrewSenseClient client, string clientId, string clientSecret)
         {
@@ -21,11 +24,13 @@ namespace CrewSenseNet.Authentication
 
         public async Task<string> GetNewToken()
         {
-            var tokenResponse = await GetTokenResponse(clientId, clientSecret);
+            var tokenResponse = await GetTokenResponse();
+            expiration = tokenResponse.Expires;
+
             return tokenResponse.AccessToken;
         }
 
-        private async Task<AccessTokenResponse> GetTokenResponse(string clientId, string clientSecret)
+        private async Task<AccessTokenResponse> GetTokenResponse()
         {
             var uri = new Uri("https://api.crewsense.com/oauth/access_token");
             var data = new Dictionary<string, string>

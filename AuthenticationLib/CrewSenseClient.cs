@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace CrewSenseNet.Authentication
@@ -14,13 +15,19 @@ namespace CrewSenseNet.Authentication
 
         public CrewSenseClient(TokenManager tokenManager) => this.tokenManager = tokenManager;
 
-        private void Authenticate()
+        private async Task Authenticate()
         {
-            var newToken = tokenManager.GetNewToken();
+            var token = await tokenManager.GetNewToken();
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
         }
 
         public async Task<HttpResponseMessage> DoGet(Uri uri, Dictionary<string, string> data)
         {
+            if (tokenManager.IsExpired())
+            {
+                await Authenticate();
+            }
+
             var content = new FormUrlEncodedContent(data);
             return await client.GetAsync(uri);
         }

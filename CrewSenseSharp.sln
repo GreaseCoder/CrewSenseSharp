@@ -5,9 +5,11 @@ VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticationLib", "AuthenticationLib\AuthenticationLib.csproj", "{044FF748-6F50-43AC-8BD4-F727D0FEDAC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationLib.Tests", "AuthenticationLib.Tests\AuthenticationLib.Tests.csproj", "{DD0A4B58-26D0-459E-8104-D0D517372C6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticationLib.Tests", "AuthenticationLib.Tests\AuthenticationLib.Tests.csproj", "{DD0A4B58-26D0-459E-8104-D0D517372C6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLib", "DataAccessLib\DataAccessLib.csproj", "{7A3ED0B0-6E0B-4508-9E9A-B072019EBEBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLib", "DataAccessLib\DataAccessLib.csproj", "{7A3ED0B0-6E0B-4508-9E9A-B072019EBEBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLib.Tests", "DataAccessLib.Tests\DataAccessLib.Tests.csproj", "{1BE2B4B7-3EE0-4FBF-A4C2-FB64A4E0D2C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{7A3ED0B0-6E0B-4508-9E9A-B072019EBEBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A3ED0B0-6E0B-4508-9E9A-B072019EBEBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A3ED0B0-6E0B-4508-9E9A-B072019EBEBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BE2B4B7-3EE0-4FBF-A4C2-FB64A4E0D2C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BE2B4B7-3EE0-4FBF-A4C2-FB64A4E0D2C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BE2B4B7-3EE0-4FBF-A4C2-FB64A4E0D2C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BE2B4B7-3EE0-4FBF-A4C2-FB64A4E0D2C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
