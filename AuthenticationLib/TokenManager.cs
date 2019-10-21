@@ -19,7 +19,7 @@ namespace CrewSenseNet.Authentication
             this.clientSecret = clientSecret;
         }
 
-        public async Task<string> GetToken()
+        public async Task<string> GetNewToken()
         {
             var tokenResponse = await GetTokenResponse(clientId, clientSecret);
             return tokenResponse.AccessToken;
@@ -35,7 +35,7 @@ namespace CrewSenseNet.Authentication
                 { "grant_type", "client_credentials" }
             };
             
-            var result = await client.DoPut(uri, data);
+            var result = await client.DoPost(uri, data);
             var content = await result.Content.ReadAsStringAsync();
 
             try

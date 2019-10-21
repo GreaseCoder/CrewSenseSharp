@@ -9,6 +9,6 @@ namespace CrewSenseNet.Authentication
     public interface ICrewSenseClient
     {
         Task<HttpResponseMessage> DoGet(Uri uri, Dictionary<string, string> data);
-        Task<HttpResponseMessage> DoPut(Uri uri, Dictionary<string, string> data);
+        Task<HttpResponseMessage> DoPost(Uri uri, Dictionary<string, string> data);
     }
 }

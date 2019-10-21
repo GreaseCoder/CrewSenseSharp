@@ -3,26 +3,50 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using CrewSenseNet.Authentication;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using System;
+using System.Net.Http;
 
 namespace AuthenticationLib.Tests
 {
     [TestFixture]
     public class TestClass
     {
-        [Test]
-        public void ShouldParseTokenResponse()
+        private readonly string clientId;
+        private readonly string clientSecret;
+
+        public TestClass()
         {
-            var tokenManager = new TokenManager(new MockCrewSenseClient());
-            var tokenResponse = tokenManager.GetToken("YOUR_CLIENT_ID", "YOUR_SECRET_KEY").Result;
-            
+            var config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.secret.json")
+                .Build();
+
+            clientId = config.GetSection("ClientId").Value;
+            clientSecret = config.GetSection("ClientSecret").Value;
         }
 
         [Test]
         public void ShouldGetToken()
         {
-            var tokenManager = new TokenManager(new CrewSenseClient());
-            var token = tokenManager.GetToken("6t3TfkUIYJ", "8Mb1PUUVa7u84n5k5MPKpdsxDNti9z1p").Result;
+            var tokenManager = new TokenManager(new BasicClient(), clientId, clientSecret);
+            var token = tokenManager.GetNewToken().Result;
 
+        }
+    }
+
+    public class BasicClient : ICrewSenseClient
+    {
+        private readonly HttpClient client = new HttpClient();
+
+        public async Task<HttpResponseMessage> DoGet(Uri uri, Dictionary<string, string> data)
+        {
+            return await client.GetAsync(uri);
+        }
+
+        public async Task<HttpResponseMessage> DoPost(Uri uri, Dictionary<string, string> data)
+        {
+            var content = new FormUrlEncodedContent(data);
+            return await client.PostAsync(uri, content);
         }
     }
 }

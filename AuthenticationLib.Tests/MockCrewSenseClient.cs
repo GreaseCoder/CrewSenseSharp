@@ -15,7 +15,7 @@ namespace AuthenticationLib.Tests
             throw new NotImplementedException();
         }
 
-        public Task<HttpResponseMessage> DoPut(Uri uri, Dictionary<string, string> data)
+        public Task<HttpResponseMessage> DoPost(Uri uri, Dictionary<string, string> data)
         {
             throw new NotImplementedException();
         }

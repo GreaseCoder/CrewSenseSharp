@@ -16,7 +16,7 @@ namespace CrewSenseNet.Authentication
 
         private void Authenticate()
         {
-            var newToken = tokenManager.GetToken();
+            var newToken = tokenManager.GetNewToken();
         }
 
         public async Task<HttpResponseMessage> DoGet(Uri uri, Dictionary<string, string> data)
@@ -25,7 +25,7 @@ namespace CrewSenseNet.Authentication
             return await client.GetAsync(uri);
         }
 
-        public async Task<HttpResponseMessage> DoPut(Uri uri, Dictionary<string, string> data)
+        public async Task<HttpResponseMessage> DoPost(Uri uri, Dictionary<string, string> data)
         {
             var content = new FormUrlEncodedContent(data);
             return await client.PostAsync(uri, content);
