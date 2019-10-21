@@ -14,8 +14,7 @@ namespace AuthenticationLib.Tests
         {
             var tokenManager = new TokenManager(new MockCrewSenseClient());
             var tokenResponse = tokenManager.GetToken("YOUR_CLIENT_ID", "YOUR_SECRET_KEY").Result;
-
-            StringAssert.AreEqualIgnoringCase("DZs3IeaMP5uEAc2I19kJYl8Tbvsmgq9GaPQPaMjN", tokenResponse);
+            
         }
 
         [Test]
